@@ -12,9 +12,9 @@ apt-get update -y || { echo "Failed to update package lists."; exit 1; }
 apt-get upgrade -y || { echo "Failed to upgrade packages."; exit 1; }
 apt autoremove -y || { echo "Failed to clean up unused packages."; exit 1; }
 
-# Install required packages for Nekoray
-echo "Installing dependencies for Nekoray..."
-apt install -y build-essential \
+# Install required packages
+echo "Installing required packages..."
+apt install -y unzip wget build-essential \
                libfontconfig1 \
                libqt5network5 \
                libqt5widgets5 \
