@@ -12,26 +12,21 @@ apt-get update -y || { echo "Failed to update package lists."; exit 1; }
 apt-get upgrade -y || { echo "Failed to upgrade packages."; exit 1; }
 apt autoremove -y || { echo "Failed to clean up unused packages."; exit 1; }
 
-# Install required packages for Nekoray and its installer
-echo "Installing dependencies for Nekoray and its installer..."
+# Install required packages for Nekoray
+echo "Installing dependencies for Nekoray..."
 apt install -y build-essential \
                libfontconfig1 \
                libqt5network5 \
                libqt5widgets5 \
                libqt5x11extras5 \
-               libqt5gui5 \
-               unzip \  # Add unzip here
-               wget || { echo "Failed to install dependencies."; exit 1; }
+               libqt5gui5 || { echo "Failed to install dependencies."; exit 1; }
 
 # Download and install Nekoray
 echo "Downloading and installing Nekoray..."
-NEKORAY_INSTALL_URL="https://raw.githubusercontent.com/ohmydevops/nekoray-installer/main/installer.sh"
+NEKORAY_INSTALL_URL="https://raw.githubusercontent.com/ohmydevops/nekoray-installer/main/installer.sh "
 wget -qO /tmp/nekoray-installer.sh "$NEKORAY_INSTALL_URL" || { echo "Failed to download Nekoray installer."; exit 1; }
 chmod +x /tmp/nekoray-installer.sh || { echo "Failed to make installer executable."; exit 1; }
-
-# Run the installer.sh script with the current user's home directory
-# This ensures NekoRay is installed in the user's home directory
-su - $SUDO_USER -c "/tmp/nekoray-installer.sh" || { echo "Failed to install Nekoray."; exit 1; }
+/tmp/nekoray-installer.sh || { echo "Failed to install Nekoray."; exit 1; }
 
 # Install required packages for XFCE and XRDP
 echo "Installing XFCE4, XRDP, and Firefox..."
