@@ -28,35 +28,4 @@ service xrdp restart
 ufw disable
 ufw allow 3389
 
-# Password change section
-echo ""
-echo "Setting up user password:"
-read -p "Enter username to change password: " username
-
-# Check if user exists
-if id "$username" &>/dev/null; then
-    # Secure password prompt
-    while true; do
-        read -sp "Enter new password for $username: " password
-        echo
-        read -sp "Confirm password: " password_confirm
-        echo
-        
-        if [ "$password" != "$password_confirm" ]; then
-            echo "Passwords do not match. Please try again."
-        elif [ -z "$password" ]; then
-            echo "Password cannot be empty. Please try again."
-        else
-            break
-        fi
-    done
-    
-    # Change password
-    echo "$username:$password" | chpasswd
-    echo "Password updated successfully for $username"
-else
-    echo "Error: User $username does not exist!"
-    exit 1
-fi
-
 echo "Setup completed successfully!"
