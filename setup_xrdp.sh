@@ -1,4 +1,3 @@
-bash
 #!/bin/bash
 
 # Check if script is run as root
@@ -27,8 +26,7 @@ sudo apt install build-essential \
                  libqt5gui5 -y
 
 # Install nekoray
-wget -qO- https://raw.githubusercontent.com/ohmydevops/nekoray-installer/main/installer.sh
-   | bash
+wget -qO- https://raw.githubusercontent.com/ohmydevops/nekoray-installer/main/installer.sh | bash
 
 # Configure xrdp to use xfce4
 sed -i 's/^test -x \/etc\/X11\/Xsession && exec \/etc\/X11\/Xsession/#&/' /etc/xrdp/startwm.sh
