@@ -17,16 +17,6 @@ apt install xfce4 xfce4-goodies -y
 apt install xrdp -y
 apt-get install firefox -y
 
-# Install additional dependencies for nekoray
-sudo apt install build-essential \
-                 libfontconfig1 \
-                 libqt5network5 \
-                 libqt5widgets5 \
-                 libqt5x11extras5 \
-                 libqt5gui5 -y
-
-# Install nekoray
-wget -qO- https://raw.githubusercontent.com/ohmydevops/nekoray-installer/main/installer.sh | bash
 
 # Configure xrdp to use xfce4
 sed -i 's/^test -x \/etc\/X11\/Xsession && exec \/etc\/X11\/Xsession/#&/' /etc/xrdp/startwm.sh
